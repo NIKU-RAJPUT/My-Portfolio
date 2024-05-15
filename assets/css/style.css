@@ -13,6 +13,41 @@ body {
   box-sizing: border-box;
 }
 /*Resume section*/
+
+.resume-link {
+  background-color: blue;
+  display: inline-block; /* Make the anchor element only as wide as its contents */
+  padding: 5px 10px; /* Add padding for better clickability */
+  text-decoration: none; /* Remove underline */
+  border-radius: 10px;
+}
+
+.resume-link span {
+  font-family: "Poppins", helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  color: white; /* Set text color to white */
+}
+
+.resume-link:hover {
+  background-color: black; /* Change background color on hover */
+  border-radius: 10px;
+}
+
+.resume-icon {
+  color: rgb(236, 236, 236); /* Set color of font icon to white */
+  margin-left: 5px; /* Add space between text and icon */
+}
+.bi-download {
+  font-weight: 700;
+  color: white; /* Set color of download icon to white */
+  margin-left: 5px; /* Add space between text and icon */
+}
+
+
+/*  Download resume end  */
+
 .mt-2{
   font-family: "Poppins", helvetica;
   font-size: 15px;
@@ -476,6 +511,12 @@ p {
   height: 100vh;
   width: 100%;
 }
+@media (max-width: 768px) {
+  /* Adjust height for tablets and smaller screens */
+  #hero {
+    height: 70vh;
+  }
+}
 
 #hero .hero-content {
   height: 100vh;
@@ -487,7 +528,7 @@ p {
 }
 
 .hero-content h1 {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   margin-bottom: 10px;
   text-transform: uppercase;
