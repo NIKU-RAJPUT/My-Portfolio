@@ -28,7 +28,45 @@
 
  
 <!--   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet"> -->
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "forms/contact.php", true); // Update the path to your contact.php file
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var messageElement = document.querySelector(".message");
+                        if (response.success) {
+                            // Show success message below the form
+                            messageElement.innerHTML = response.message;
+                            messageElement.classList.add("alert", "alert-success"); // Add Bootstrap success class
+                            messageElement.style.display = "block";
+                            // Clear form fields if needed
+                            document.querySelector("form").reset();
+                        } else {
+                            // Show error message below the form
+                            messageElement.innerHTML = response.message;
+                            messageElement.classList.add("alert", "alert-danger"); // Add Bootstrap danger class
+                            messageElement.style.display = "block";
+                        }
+                    } else {
+                        // Show error message below the form
+                        var messageElement = document.querySelector(".message");
+                        messageElement.innerHTML = "Error: " + xhr.status;
+                        messageElement.classList.add("alert", "alert-danger"); // Add Bootstrap danger class
+                        messageElement.style.display = "block";
+                    }
+                }
+            };
+            xhr.send(formData);
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -473,6 +511,15 @@
                   </div>
 
                   <div class="col-lg-6">
+              <form action="forms/contact.php" method="post" id="myForm">
+                <div class="row gy-3">
+
+                  <div class="col-lg-6">
+                    <div class="form-group contact-block1">
+                      <input type="text" class="form-control" name="fname" id="fname" placeholder="Your Name" required>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
                     <div class="form-group">
                       <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                     </div>
@@ -490,18 +537,19 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-12">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                  </div>
+                   <!-- <div class="col-lg-12">
+        <div class="loading" style="display: none;">Loading</div>
+        <div class="error-message" style="display: none;"></div>
+        <div class="sent-message" style="display: none;"></div>
+    </div> -->
 
                   <div class="mt-0">
-                    <input type="submit" class="btn btn-defeault btn-send" value="Send message">
+                    <input type="submit" class="btn btn-defeault" value="Send message">
                   </div>
 
                 </div>
-              </form>
+              </form> 
+              <div class="message" style="display: none;"></div> 
             </div>
           </div>
         </div>
