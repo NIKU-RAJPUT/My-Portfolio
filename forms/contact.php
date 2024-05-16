@@ -27,7 +27,7 @@ if(isset($_POST['fname'], $_POST['email'], $_POST['subject'], $_POST['message'])
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'niku0000singh@gmail.com'; // Your Gmail address
-        $mail->Password   = 'lcwu tluh vkrx lese'; // Your Gmail password or app password if 2FA enabled
+        $mail->Password   = 'ecwu tkuh vwrx lhxe'; // Your Gmail password or app password if 2FA enabled
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = 465; // 587 if using TLS encryption (PHPMailer::ENCRYPTION_STARTTLS)
 
